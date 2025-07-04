@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="img-src * data:;">
+    <title>November Services - Advanced Testing Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #1a2a6c);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* Download button styles */
+        .download-btn-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        
+        .download-btn {
+            background: #4bcffa;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            font-weight: 600;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            z-index: 1000;
+        }
+        
+        .download-btn:hover {
+            background: #1e90ff;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .download-btn.loading {
+            background: #1e3799;
+        }
+        
+        .download-btn .spinner {
+            display: none;
+        }
+        
+        .download-btn.loading .spinner {
+            display: inline-block;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .brochure-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+            position: relative;
+        }
+
+        .brochure-header {
+            background: linear-gradient(to right, #0c2461, #1e3799, #0c2461);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-logo {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 120px;
+            height: 120px;
+            background: #fff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            z-index: 2;
+        }
+
+        .header-logo img {
+            max-width: 80%;
+            max-height: 80%;
+            object-fit: contain;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+            padding-top: 40px;
+        }
+
+        .brochure-header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .brochure-header h2 {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            font-weight: 400;
+        }
+
+        .tagline {
+            font-size: 1.4rem;
+            font-style: italic;
+            margin: 25px 0;
+            line-height: 1.8;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-bar {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 15px;
+            border-radius: 8px;
+            display: inline-block;
+            margin-top: 20px;
+            backdrop-filter: blur(5px);
+        }
+
+        .contact-bar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .contact-bar a:hover {
+            color: #4bcffa;
+            transform: translateY(-2px);
+        }
+
+        .contact-bar i {
+            margin-right: 8px;
+        }
+
+        .page {
+            padding: 40px;
+            position: relative;
+        }
+
+        .page-logo {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 80px;
+            height: 80px;
+            background: #0c2461;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .page-logo img {
+            max-width: 70%;
+            max-height: 70%;
+            object-fit: contain;
+        }
+
+        .page-title {
+            color: #0c2461;
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #4bcffa;
+            display: inline-block;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            color: #1e3799;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title i {
+            margin-right: 10px;
+            color: #4bcffa;
+        }
+
+        .content-block {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 30px;
+            align-items: flex-start;
+        }
+
+        .text-content {
+            flex: 1;
+        }
+
+        .image-placeholder {
+            flex: 1;
+            min-height: 250px;
+            background: linear-gradient(45deg, #f5f7fa, #e4e7eb);
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #7b8793;
+            font-weight: 600;
+            border: 2px dashed #cbd2d9;
+            transition: all 0.3s ease;
+        }
+
+        .image-placeholder:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .service-card {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border-left: 4px solid #4bcffa;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            background: white;
+        }
+
+        .service-card h3 {
+            color: #1e3799;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .service-card h3 i {
+            margin-right: 10px;
+            color: #4bcffa;
+        }
+
+        .service-card ul {
+            padding-left: 20px;
+        }
+
+        .service-card li {
+            margin-bottom: 8px;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .service-card li:before {
+            content: "•";
+            color: #4bcffa;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+
+        .benefits {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .benefit-card {
+            flex: 1;
+            min-width: 250px;
+            background: #e3f2fd;
+            padding: 25px;
+            border-radius: 8px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            background: #bbdefb;
+            transform: translateY(-5px);
+        }
+
+        .benefit-card i {
+            font-size: 2.5rem;
+            color: #0c2461;
+            margin-bottom: 15px;
+        }
+
+        .benefit-card h3 {
+            color: #0c2461;
+            margin-bottom: 10px;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .value-card {
+            background: #f1f8ff;
+            padding: 25px;
+            border-radius: 8px;
+            border-top: 4px solid #0c2461;
+        }
+
+        .value-card h3 {
+            color: #0c2461;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .value-card h3 i {
+            margin-right: 10px;
+            color: #4bcffa;
+        }
+
+        .cta-section {
+            background: linear-gradient(to right, #0c2461, #1e3799);
+            color: white;
+            text-align: center;
+            padding: 50px 30px;
+            border-radius: 10px;
+            margin-top: 40px;
+        }
+
+        .cta-section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #4bcffa;
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:hover {
+            background: #1e90ff;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .contact-info {
+            text-align: center;
+            margin-top: 20px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .contact-info p {
+            margin: 10px 0;
+            font-size: 1.1rem;
+        }
+
+        .footer {
+            background: #0c2461;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+            position: relative;
+        }
+
+        .footer-logo {
+            position: absolute;
+            top: 50%;
+            left: 20px;
+            transform: translateY(-50%);
+            width: 60px;
+            height: 60px;
+            background: #fff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+
+        .footer-logo img {
+            max-width: 70%;
+            max-height: 70%;
+            object-fit: contain;
+        }
+
+        @media (max-width: 768px) {
+            .content-block {
+                flex-direction: column;
+            }
+            
+            .brochure-header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .brochure-header h2 {
+                font-size: 1.5rem;
+            }
+            
+            .contact-bar {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .page {
+                padding: 25px;
+            }
+            
+            .header-logo, .page-logo, .footer-logo {
+                position: relative;
+                top: auto;
+                left: auto;
+                transform: none;
+            }
+            
+            .download-btn-container {
+                position: fixed;
+                bottom: 10px;
+                right: 10px;
+            }
+            
+            .download-btn {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Enhanced Print Styles */
+        @media print {
+            /* Reset all margins and padding */
+            body, html {
+                background: white !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                width: 100% !important;
+                height: auto !important;
+                min-height: auto !important;
+            }
+            
+            /* Set page to A4 landscape with zero margins */
+            @page {
+                size: A4 landscape;
+                margin: 0 !important;
+            }
+            
+            /* Remove all shadows, rounded corners and backgrounds */
+            /* .brochure-container {
+                box-shadow: none !important;
+                border-radius: 0 !important;
+                margin: 0 !important;
+                max-width: 100% !important;
+                width: 100% !important;
+                min-height: 100vh !important;
+            } */
+            
+            /* Hide non-print elements */
+            .download-btn-container {
+                display: none !important;
+            }
+            
+            /* Header adjustments */
+            .brochure-header {
+                padding: 20px !important;
+                background: linear-gradient(to right, #0c2461, #1e3799) !important;
+                -webkit-print-color-adjust: exact !important;
+                color-adjust: exact !important;
+                position: relative !important;
+                /* Center content vertically and horizontally */
+                display: flex !important;
+                flex-direction: column !important;
+                justify-content: center !important;
+                align-items: center !important;
+                min-height: 100vh !important;
+                width: 100vw !important;
+                box-sizing: border-box !important;
+                page-break-after: always !important;
+            }
+            
+            /* Remove interactive elements */
+            .btn, .download-btn, .footer {
+                display: none !important;
+            }
+            .section {
+                page-break-before: always !important;
+            }
+            
+            /* Content adjustments */
+            .page {
+                padding: 20px 30px !important;
+                page-break-inside: avoid;
+                break-inside: avoid;
+                position: relative;
+
+                display: flex !important;
+                flex-direction: column !important;
+                justify-content: center !important;
+                align-items: center !important;
+                min-height: 100vh !important;
+                width: 100vw !important;
+                box-sizing: border-box !important;
+                page-break-after: always !important;
+            }
+            
+            /* Improve readability for print */
+            /* .service-card, .benefit-card, .value-card {
+                box-shadow: none !important;
+                border: 1px solid #ddd !important;
+                page-break-inside: avoid;
+                break-inside: avoid;
+            } */
+            
+            /* Force URLs to display */
+            a::after {
+                content: " (" attr(href) ")";
+                font-size: 0.9em;
+                font-weight: normal;
+            }
+            
+            /* Remove decorative elements */
+            .btn:hover, .service-card:hover, 
+            .benefit-card:hover, .download-btn:hover {
+                transform: none !important;
+            }
+            
+            /* Ensure images print */
+            .image-placeholder {
+                border: none !important;
+                box-shadow: none !important;
+                background: transparent !important;
+            }
+            
+            img {
+                max-width: 100% !important;
+                height: auto !important;
+                display: block !important;
+            }
+            
+            /* Footer adjustments */
+            /* .footer {
+                -webkit-print-color-adjust: exact !important;
+                color-adjust: exact !important;
+                position: relative;
+                bottom: 0;
+                width: 100%;
+            } */
+            
+            /* QR code sizing */
+            .contact-info img {
+                max-width: 150px !important;
+            }
+            
+            /* Print-friendly colors */
+            .section-title i, .service-card h3 i {
+                color: #333 !important;
+            }
+            
+            /* Page break control */
+            .page-break {
+                page-break-before: always;
+            }
+            
+            .cta-section {
+                page-break-inside: avoid;
+                break-inside: avoid;
+            }
+            
+            /* Maintain layout structure */
+            .content-block {
+                display: flex !important;
+                flex-direction: row !important;
+                gap: 20px !important;
+                margin-bottom: 20px !important;
+            }
+            
+            /* .text-content, .image-placeholder {
+                flex: 1 !important;
+                max-width: 50% !important;
+            } */
+            
+            /* Force landscape layout */
+            .services-grid, .values-grid {
+                grid-template-columns: repeat(3, 1fr) !important;
+            }
+            
+            .benefits {
+                justify-content: space-between !important;
+            }
+            
+            .benefit-card {
+                min-width: 23% !important;
+                flex: none !important;
+            }
+            
+            /* Adjust font sizes for print */
+            body {
+                font-size: 12pt !important;
+            }
+            
+            .brochure-header h1 {
+                font-size: 28pt !important;
+            }
+            
+            .brochure-header h2 {
+                font-size: 18pt !important;
+            }
+            
+            .page-title {
+                font-size: 22pt !important;
+            }
+            
+            .section-title {
+                font-size: 16pt !important;
+            }
+            
+            .service-card h3, .value-card h3 {
+                font-size: 14pt !important;
+            }
+            
+            .service-card li, .value-card p {
+                font-size: 11pt !important;
+            }
+            
+            /* Maintain element positions */
+            /* .header-logo, .page-logo, .footer-logo {
+                position: absolute !important;
+                top: 20px !important;
+                left: 20px !important;
+                transform: none !important;
+                border-radius: 50% !important;
+            }
+            
+            .page-logo {
+                top: 20px !important;
+                right: 20px !important;
+                left: auto !important;
+                border-radius: 50% !important;
+            }
+            
+            .footer-logo {
+                top: 50% !important;
+                transform: translateY(-50%) !important;
+                border-radius: 50% !important;
+            } */
+        }
+    </style>
+</head>
+<body>
+    <!-- Download button container -->
+    <div class="download-btn-container">
+        <button id="downloadPdfBtn" class="download-btn">
+            <i class="fas fa-download"></i>
+            <span>Download PDF</span>
+            <i class="fas fa-spinner spinner"></i>
+        </button>
+    </div>
+    
+    <!-- Main content -->
+    <div class="brochure-container">
+        <!-- Cover Page -->
+        <header class="brochure-header">
+            <div class="header-logo">
+                <img width="250" src="images/NS_Logo_sq.jpg" alt="November Services Logo"/>
+            </div>
+            
+            <div class="header-content">
+                <h1>November Services</h1>
+                <h2>Your Trusted Partner in Energy Innovation & Safety Compliance</h2>
+                
+                <div class="tagline">
+                    "Engineering Trust. Delivering Excellence. Powering Industry with Smart Solutions."
+                </div>
+                
+                <div class="contact-bar">
+                    <a href="mailto:november.services25@gmail.com"><i class="fas fa-envelope"></i> november.services25@gmail.com</a>
+                    <a href="tel:8383807972"><i class="fas fa-phone"></i> 8383807972</a>
+                </div>
+            </div>
+        </header>
+
+        <!-- About Page -->
+        <section class="page">
+            <h2 class="page-title">About Us</h2>
+            
+            <div class="content-block">
+                <div class="text-content">
+                    <p>November Services is a forward-thinking technology and engineering company specializing in advanced energy systems testing. With a strong commitment to quality, innovation, and safety, we empower the clean energy transition by de-risking product development and accelerating market entry.</p>
+                    
+                    <div>
+                        <h3 class="section-title"><i class="fas fa-battery-full"></i> Lithium-Ion Battery Testing</h3>
+                        <p>Our state-of-the-art facility conducts performance, safety, lifecycle, and environmental tests in compliance with national and international standards. We serve clients across automotive, industrial, and consumer electronics sectors, ensuring battery systems are reliable, safe, and market-ready.</p>
+                    </div>
+                    
+                    <div>
+                        <h3 class="section-title"><i class="fas fa-solar-panel"></i> Solar Testing Division</h3>
+                        <p>We evaluate photovoltaic (PV) modules and components for efficiency, durability, and regulatory compliance. Our testing includes thermal performance, environmental stress testing, and power output validation, supporting manufacturers, EPCs, and system integrators in achieving optimal performance and certification.</p>
+                    </div>
+                    
+                    <p>Backed by expert engineers and cutting-edge equipment, November Services is a trusted partner in driving clean energy innovation through rigorous testing and quality assurance.</p>
+                </div>
+                
+                <div class="image-placeholder">
+                    <img src="images/about_us_testing.png" alt="Battery Testing Laboratory" style="max-width: 100%; border-radius: 8px;">
+                </div>
+                
+            </div>
+        </section>
+
+        <!-- Battery Testing Page -->
+        <section class="page" style="background: #f8f9fa;">
+            <h2 class="page-title">Lithium-Ion Battery Testing</h2>
+            <p class="section-subtitle">(AS PER AIS 156 STANDARDS – PHASES 1 & 2)</p>
+            
+            <p>We provide a complete suite of AIS 156-mandated tests to ensure safety, durability, and compliance:</p>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3><i class="fas fa-tachometer-alt"></i> Performance & Safety Tests</h3>
+                    <ul>
+                        <li>Battery Performance Tests</li>
+                        <li>Thermal Shock and Cycling Test</li>
+                        <li>Vibration Test</li>
+                        <li>Mechanical Shock Test</li>
+                        <li>Thermal Abuse Test</li>
+                        <li>Crush Test</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <h3><i class="fas fa-shield-alt"></i> Protection & Environmental Tests</h3>
+                    <ul>
+                        <li>Overcharge Protection Test</li>
+                        <li>Short Circuit Test</li>
+                        <li>Over-discharge Protection Test</li>
+                        <li>Water Immersion Test</li>
+                        <li>Fire Resistance Test</li>
+                        <li>IPX7/IPX9 Water Ingress Tests</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <h3><i class="fas fa-microscope"></i> Advanced Verification</h3>
+                    <ul>
+                        <li>Insulation Resistance Test</li>
+                        <li>Cell Internal Short Circuit Test (Nail Penetration)</li>
+                        <li>SOC (State of Charge) Determination</li>
+                        <li>BMS Functionality Verification</li>
+                        <li>Endurance and Life Cycle Testing</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="content-block" style="margin-top: 40px;">
+                <div class="image-placeholder">
+                    <img src="images/battery_exploding.png" alt="Battery Exploding" style="max-width: 100%; border-radius: 8px;">
+                </div>
+                
+                <div class="text-content">
+                    <h3 class="section-title"><i class="fas fa-exclamation-triangle"></i> Why Battery Testing Matters</h3>
+                    <p>Comprehensive battery testing is essential for ensuring product safety, reliability, and compliance with industry standards. Our rigorous testing protocols help identify potential failure points and performance limitations before products reach the market.</p>
+                    <p>With the growing demand for energy storage solutions, our testing services provide the critical validation needed to build consumer trust and meet regulatory requirements across global markets.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Solar Testing Page -->
+        <section class="page">            
+            <h2 class="page-title">Solar Testing Services</h2>
+            
+            <p>Ensure your solar products perform reliably in all environmental conditions with our comprehensive testing solutions:</p>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3><i class="fas fa-sun"></i> Module Performance Tests</h3>
+                    <ul>
+                        <li>Photovoltaic Module Testing (IEC 61215 & IEC 61730)</li>
+                        <li>Performance Ratio Testing</li>
+                        <li>Thermal Cycling</li>
+                        <li>Humidity Freeze Test</li>
+                        <li>UV Exposure Test</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <h3><i class="fas fa-wind"></i> Durability & Stress Tests</h3>
+                    <ul>
+                        <li>Mechanical Load Test</li>
+                        <li>PID (Potential Induced Degradation) Test</li>
+                        <li>Hot Spot Detection</li>
+                        <li>Outdoor Exposure/Weathering Tests</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <h3><i class="fas fa-bolt"></i> Electrical & Component Tests</h3>
+                    <ul>
+                        <li>Flash Testing</li>
+                        <li>Insulation Resistance & Dielectric Strength</li>
+                        <li>Bypass Diode Testing</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="content-block" style="margin-top: 40px;">
+                <div class="text-content">
+                    <h3 class="section-title"><i class="fas fa-lightbulb"></i> Solar Testing Expertise</h3>
+                    <p>Our solar testing services help manufacturers and installers ensure long-term performance and reliability of photovoltaic systems. We simulate real-world conditions – including accelerated aging (UV, thermal cycling, humidity freeze), mechanical loads, PID, and hail impact – to rigorously validate product durability and efficiency under stress, aligned with international standards (IEC, UL, ISO).</p>
+                    <p>With the solar industry evolving rapidly, our testing protocols provide the critical data needed to optimize system design, extend product lifespan, achieve certification for global markets, and mitigate costly field failures. By identifying potential weaknesses early, we help protect your brand reputation, reduce warranty claims, and safeguard investments. The independent validation we deliver is also key for securing project financing and favorable insurance terms.</p>
+                </div>
+                
+                <div class="image-placeholder">
+                    <img src="images/solar_testing.png" alt="Solar Testing Laboratory" style="max-width: 100%; border-radius: 8px;">
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose Us Page -->
+        <section class="page" style="background: #f8f9fa;">
+            <h2 class="page-title">Why Choose November Services?</h2>
+            
+            <div class="benefits">
+                <div class="benefit-card">
+                    <i class="fas fa-flask"></i>
+                    <h3>Mitigate Risk</h3>
+                    <p>Leverage cutting-edge labs & global standard compliance</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <i class="fas fa-users"></i>
+                    <h3>Expert Guidance</h3>
+                    <p>Access deep technical expertise for complex challenges</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <i class="fas fa-bolt"></i>
+                    <h3>Speed to Market</h3>
+                    <p>Benefit from rapid testing cycles and certification support</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <i class="fas fa-lightbulb"></i>
+                    <h3>Innovation Partner</h3>
+                    <p>Collaborate on R&D for next-generation solutions</p>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h3 class="section-title"><i class="fas fa-star"></i>Our Commitment</h3>
+                
+                <div class="values-grid">
+                    <div class="value-card">
+                        <h3><i class="fas fa-crosshairs"></i> Precision & Reliability</h3>
+                        <p>Uncompromising data accuracy you can trust for critical decisions.</p>
+                    </div>
+                    
+                    <div class="value-card">
+                        <h3><i class="fas fa-handshake"></i> Innovation Partnership</h3>
+                        <p>Collaborating to solve your toughest engineering challenges.</p>
+                    </div>
+                    
+                    <div class="value-card">
+                        <h3><i class="fas fa-trophy"></i> Customer Success</h3>
+                        <p>Tailored solutions and responsive support for your unique needs.</p>
+                    </div>
+                    
+                    <div class="value-card">
+                        <h3><i class="fas fa-shield-alt"></i> Safety First</h3>
+                        <p>Ensuring your products meet the highest safety benchmarks.</p>
+                    </div>
+                    
+                    <div class="value-card">
+                        <h3><i class="fas fa-leaf"></i> Sustainable Impact</h3>
+                        <p>Enabling cleaner, safer energy technologies for the future.</p>
+                    </div>
+                </div>
+            </div>
+        </section>    
+        <section class="page" style="background: #f8f9fa;">
+            <div class="cta-section">
+                <h2>Ready to Ensure Your Product's Safety and Performance?</h2>
+                <p>Partner with us for comprehensive testing solutions that accelerate your path to market and build customer trust.</p>
+                <a href="mailto:november.services25@gmail.com" class="btn">Contact Us Today</a>
+            </div>
+            
+            <div class="contact-info" style="display: flex; gap: 20px; align-items: flex-start;">
+                <div style="flex: 1;">
+                    <h3>November Services</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Jewar, GB Nagar, Uttar Pradesh</p>
+                    <p><i class="fas fa-phone"></i> 8383807972</p>
+                    <p><i class="fas fa-envelope"></i> november.services25@gmail.com</p>
+                    <p><i class="fas fa-receipt"></i> GST Number: 09LYVPS5060C1ZO</p>
+                </div>
+                <div style="flex: 1; text-align: center;">
+                    <img src="images/whatsapp-qr-sq.jpg" alt="WhatsApp QR Code" style="max-width: 26%; border-radius: 8px;">
+                    <p>Scan to connect on WhatsApp</p>
+                </div>
+            </div>
+        </section>
+        
+        <footer class="footer">
+            <div class="footer-logo">
+                <img width="250" src="images/NS_Logo_sq.jpg" alt="November Services Logo"/>
+            </div>
+            
+            <p>© 2025 November Services. All Rights Reserved.</p>
+            <p>Engineering Trust. Delivering Excellence. Powering Industry with Smart Solutions.</p>
+        </footer>
+    </div>
+    
+    <script>
+        document.getElementById('downloadPdfBtn').addEventListener('click', function() {
+            const button = this;
+            button.classList.add('loading');
+            
+            setTimeout(() => {
+                window.print();
+                button.classList.remove('loading');
+            }, 1000);
+        });
+        
+        // Print when Ctrl+P is pressed
+        document.addEventListener('keydown', function(e) {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
+                e.preventDefault();
+                window.print();
+            }
+        });
+    </script>
+</body>
+</html>
