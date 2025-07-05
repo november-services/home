@@ -1,0 +1,85 @@
+<!-- meeting-scheduler.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Schedule Meeting</title>
+    <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
+<script src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script>
+<script src="../assets/js/scheduler.js"></script>
+    <link rel="stylesheet" href="../assets/css/scheduler.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        #scheduler {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"],
+        input[type="datetime-local"],
+        input[type="number"],
+        textarea {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button[disabled] {
+            background-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div id="scheduler">
+        <h2>Schedule Google Meet</h2>
+        <form id="meetingForm">
+            <label>Meeting Title:</label>
+            <input type="text" id="title" required>
+            
+            <label>Date & Time:</label>
+            <input type="datetime-local" id="datetime" required>
+            
+            <label>Duration (minutes):</label>
+            <input type="number" id="duration" value="30" min="15" step="15" required>
+            
+            <label>Guests:</label>
+            <textarea id="guests" placeholder="Enter emails separated by commas"></textarea>
+            
+            <label>Agenda:</label>
+            <textarea id="agenda"></textarea>
+            
+            <button type="button" id="authorizeButton">Sign in with Google</button>
+            <button type="submit" id="scheduleButton" disabled>Schedule Meeting</button>
+        </form>
+        <div id="meetLink"></div>
+    </div>
+    
+    <script src="scheduler.js"></script>
+</body>
+</html>
