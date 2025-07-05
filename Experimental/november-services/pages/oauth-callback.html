@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script>
+    function onPageLoad() {
+      if (window.location.hash) {
+        const hashParams = new URLSearchParams(window.location.hash.substring(1));
+        if (hashParams.has('access_token')) {
+          window.opener.postMessage({
+            type: 'oauth-callback',
+            access_token: hashParams.get('access_token'),
+            expires_in: hashParams.get('expires_in')
+          }, window.opener.location.origin);
+          window.close();
+        }
+      }
+    }
+  </script>
+</head>
+<body onload="onPageLoad()">
+  Redirecting...
+</body>
+</html>
