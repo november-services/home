@@ -162,6 +162,12 @@
         src="/components/291536796347670528/revision/291536796347670529/assets/index-DhyO2aN4.js"></script>
     <link rel="stylesheet" crossorigin=""
         href="/components/291536796347670528/revision/291536796347670529/assets/index-CwaVq4cO.css">
+    <!-- <script>
+        window.onload = function() {
+            // Reset the form fields when the page loads
+            document.getElementById("form").reset();
+        };
+    </script> -->
     <style class="darkreader darkreader--cors" media="screen">
         @layer theme {
 
@@ -4884,7 +4890,11 @@
                                                 <div data-slot="card-content" class="p-6" data-magicpath-id="31"
                                                     data-magicpath-path="ContactPage.tsx">
                                                     <form class="space-y-6" data-magicpath-id="32"
-                                                        data-magicpath-path="ContactPage.tsx">
+                                                        data-magicpath-path="ContactPage.tsx"
+                                                        method="POST"
+                                                        id="contactForm">
+                                                        <input type="hidden" name="access_key" value="2307535b-5666-42c1-9933-0edc8077924d">
+                                                        <input type="hidden" name="subject" value="New Enquiry for November Services">
                                                         <div role="button" tabindex="0" aria-disabled="true"
                                                             aria-roledescription="sortable"
                                                             aria-describedby="DndDescribedBy-10"
@@ -4915,26 +4925,14 @@
                                                                             >
                                                                             <input data-slot="input"
                                                                                 class="border-input file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground flex h-9 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
-                                                                                id="fullName" placeholder="John Doe"
+                                                                                id="fullName" placeholder="Abhinav Sharma"
+                                                                                name="fullName"
+                                                                                type="text"
+                                                                                required
                                                                                 data-magicpath-id="36"
                                                                                 data-magicpath-path="ContactPage.tsx"
                                                                                 value=""></div>
                                                                     </div>
-                                                                    <div id="DndDescribedBy-24" style="display: none;">
-                                                                        To pick up a draggable item, press the space
-                                                                        bar.
-                                                                        While dragging, use the arrow keys to move the
-                                                                        item.
-                                                                        Press space again to drop the item in its new
-                                                                        position, or press escape to cancel.
-                                                                    </div>
-                                                                    <div id="DndLiveRegion-24" role="status"
-                                                                        aria-live="assertive" aria-atomic="true"
-                                                                        style="position: fixed; top: 0px; left: 0px; width: 1px; height: 1px; margin: -1px; border: 0px; padding: 0px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); clip-path: inset(100%); white-space: nowrap; --darkreader-inline-border-top: 0px; --darkreader-inline-border-right: 0px; --darkreader-inline-border-bottom: 0px; --darkreader-inline-border-left: 0px;"
-                                                                        data-darkreader-inline-border-top=""
-                                                                        data-darkreader-inline-border-right=""
-                                                                        data-darkreader-inline-border-bottom=""
-                                                                        data-darkreader-inline-border-left=""></div>
                                                                 </div>
                                                                 <div role="button" tabindex="0" aria-disabled="true"
                                                                     aria-roledescription="sortable"
@@ -4960,7 +4958,9 @@
                                                                             <input data-slot="input"
                                                                                 class="border-input file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground flex h-9 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                                                                                 id="email"
-                                                                                placeholder="john@company.com"
+                                                                                placeholder="abhinav@company.com"
+                                                                                required 
+                                                                                name="email"
                                                                                 data-magicpath-id="40"
                                                                                 data-magicpath-path="ContactPage.tsx"
                                                                                 type="email" value=""></div>
@@ -4982,19 +4982,6 @@
                                                                         data-darkreader-inline-border-left=""></div>
                                                                 </div>
                                                             </div>
-                                                            <div id="DndDescribedBy-14" style="display: none;">
-                                                                To pick up a draggable item, press the space bar.
-                                                                While dragging, use the arrow keys to move the item.
-                                                                Press space again to drop the item in its new position,
-                                                                or press escape to cancel.
-                                                            </div>
-                                                            <div id="DndLiveRegion-14" role="status"
-                                                                aria-live="assertive" aria-atomic="true"
-                                                                style="position: fixed; top: 0px; left: 0px; width: 1px; height: 1px; margin: -1px; border: 0px; padding: 0px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); clip-path: inset(100%); white-space: nowrap; --darkreader-inline-border-top: 0px; --darkreader-inline-border-right: 0px; --darkreader-inline-border-bottom: 0px; --darkreader-inline-border-left: 0px;"
-                                                                data-darkreader-inline-border-top=""
-                                                                data-darkreader-inline-border-right=""
-                                                                data-darkreader-inline-border-bottom=""
-                                                                data-darkreader-inline-border-left=""></div>
                                                         </div>
                                                         <div role="button" tabindex="0" aria-disabled="true"
                                                             aria-roledescription="sortable"
@@ -5027,26 +5014,13 @@
                                                                             <input data-slot="input"
                                                                                 class="border-input file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground flex h-9 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                                                                                 id="phone"
-                                                                                placeholder="+1 (555) 123-4567"
+                                                                                placeholder="+91 123 456 7890"
+                                                                                name="phone"
+                                                                                required
                                                                                 data-magicpath-id="45"
                                                                                 data-magicpath-path="ContactPage.tsx"
                                                                                 type="tel" value=""></div>
                                                                     </div>
-                                                                    <div id="DndDescribedBy-26" style="display: none;">
-                                                                        To pick up a draggable item, press the space
-                                                                        bar.
-                                                                        While dragging, use the arrow keys to move the
-                                                                        item.
-                                                                        Press space again to drop the item in its new
-                                                                        position, or press escape to cancel.
-                                                                    </div>
-                                                                    <div id="DndLiveRegion-26" role="status"
-                                                                        aria-live="assertive" aria-atomic="true"
-                                                                        style="position: fixed; top: 0px; left: 0px; width: 1px; height: 1px; margin: -1px; border: 0px; padding: 0px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); clip-path: inset(100%); white-space: nowrap; --darkreader-inline-border-top: 0px; --darkreader-inline-border-right: 0px; --darkreader-inline-border-bottom: 0px; --darkreader-inline-border-left: 0px;"
-                                                                        data-darkreader-inline-border-top=""
-                                                                        data-darkreader-inline-border-right=""
-                                                                        data-darkreader-inline-border-bottom=""
-                                                                        data-darkreader-inline-border-left=""></div>
                                                                 </div>
                                                                 <div role="button" tabindex="0" aria-disabled="true"
                                                                     aria-roledescription="sortable"
@@ -5072,41 +5046,15 @@
                                                                             <input data-slot="input"
                                                                                 class="border-input file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground flex h-9 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
                                                                                 id="company"
+                                                                                name="company"
+                                                                                type="text"
                                                                                 placeholder="Your Company Name"
                                                                                 data-magicpath-id="48"
                                                                                 data-magicpath-path="ContactPage.tsx"
                                                                                 value=""></div>
                                                                     </div>
-                                                                    <div id="DndDescribedBy-27" style="display: none;">
-                                                                        To pick up a draggable item, press the space
-                                                                        bar.
-                                                                        While dragging, use the arrow keys to move the
-                                                                        item.
-                                                                        Press space again to drop the item in its new
-                                                                        position, or press escape to cancel.
-                                                                    </div>
-                                                                    <div id="DndLiveRegion-27" role="status"
-                                                                        aria-live="assertive" aria-atomic="true"
-                                                                        style="position: fixed; top: 0px; left: 0px; width: 1px; height: 1px; margin: -1px; border: 0px; padding: 0px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); clip-path: inset(100%); white-space: nowrap; --darkreader-inline-border-top: 0px; --darkreader-inline-border-right: 0px; --darkreader-inline-border-bottom: 0px; --darkreader-inline-border-left: 0px;"
-                                                                        data-darkreader-inline-border-top=""
-                                                                        data-darkreader-inline-border-right=""
-                                                                        data-darkreader-inline-border-bottom=""
-                                                                        data-darkreader-inline-border-left=""></div>
                                                                 </div>
                                                             </div>
-                                                            <div id="DndDescribedBy-15" style="display: none;">
-                                                                To pick up a draggable item, press the space bar.
-                                                                While dragging, use the arrow keys to move the item.
-                                                                Press space again to drop the item in its new position,
-                                                                or press escape to cancel.
-                                                            </div>
-                                                            <div id="DndLiveRegion-15" role="status"
-                                                                aria-live="assertive" aria-atomic="true"
-                                                                style="position: fixed; top: 0px; left: 0px; width: 1px; height: 1px; margin: -1px; border: 0px; padding: 0px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); clip-path: inset(100%); white-space: nowrap; --darkreader-inline-border-top: 0px; --darkreader-inline-border-right: 0px; --darkreader-inline-border-bottom: 0px; --darkreader-inline-border-left: 0px;"
-                                                                data-darkreader-inline-border-top=""
-                                                                data-darkreader-inline-border-right=""
-                                                                data-darkreader-inline-border-bottom=""
-                                                                data-darkreader-inline-border-left=""></div>
                                                         </div>
                                                         <div role="button" tabindex="0" aria-disabled="true"
                                                             aria-roledescription="sortable"
@@ -5124,19 +5072,6 @@
                                                                         data-magicpath-path="ContactPage.tsx">Service of
                                                                         Interest *</label></div>
                                                             </div>
-                                                            <div id="DndDescribedBy-16" style="display: none;">
-                                                                To pick up a draggable item, press the space bar.
-                                                                While dragging, use the arrow keys to move the item.
-                                                                Press space again to drop the item in its new position,
-                                                                or press escape to cancel.
-                                                            </div>
-                                                            <div id="DndLiveRegion-16" role="status"
-                                                                aria-live="assertive" aria-atomic="true"
-                                                                style="position: fixed; top: 0px; left: 0px; width: 1px; height: 1px; margin: -1px; border: 0px; padding: 0px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); clip-path: inset(100%); white-space: nowrap; --darkreader-inline-border-top: 0px; --darkreader-inline-border-right: 0px; --darkreader-inline-border-bottom: 0px; --darkreader-inline-border-left: 0px;"
-                                                                data-darkreader-inline-border-top=""
-                                                                data-darkreader-inline-border-right=""
-                                                                data-darkreader-inline-border-bottom=""
-                                                                data-darkreader-inline-border-left=""></div>
                                                         </div>
                                                         <div role="button" tabindex="0" aria-disabled="true"
                                                             aria-roledescription="sortable"
@@ -5160,24 +5095,13 @@
                                                                         data-slot="textarea"
                                                                         class="border-input placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive flex field-sizing-content min-h-16 w-full rounded-md border bg-transparent px-3 py-2 text-base shadow-xs transition-[color,box-shadow] outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
                                                                         id="message"
+                                                                        name="message"
+                                                                        required
                                                                         placeholder="Please describe your testing requirements, timeline, and any specific questions you have..."
                                                                         rows="5" data-magicpath-id="58"
                                                                         data-magicpath-path="ContactPage.tsx"></textarea>
                                                                 </div>
                                                             </div>
-                                                            <div id="DndDescribedBy-17" style="display: none;">
-                                                                To pick up a draggable item, press the space bar.
-                                                                While dragging, use the arrow keys to move the item.
-                                                                Press space again to drop the item in its new position,
-                                                                or press escape to cancel.
-                                                            </div>
-                                                            <div id="DndLiveRegion-17" role="status"
-                                                                aria-live="assertive" aria-atomic="true"
-                                                                style="position: fixed; top: 0px; left: 0px; width: 1px; height: 1px; margin: -1px; border: 0px; padding: 0px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); clip-path: inset(100%); white-space: nowrap; --darkreader-inline-border-top: 0px; --darkreader-inline-border-right: 0px; --darkreader-inline-border-bottom: 0px; --darkreader-inline-border-left: 0px;"
-                                                                data-darkreader-inline-border-top=""
-                                                                data-darkreader-inline-border-right=""
-                                                                data-darkreader-inline-border-bottom=""
-                                                                data-darkreader-inline-border-left=""></div>
                                                         </div>
                                                         <div role="button" tabindex="0" aria-disabled="true"
                                                             aria-roledescription="sortable"
@@ -5186,7 +5110,8 @@
                                                                 data-slot="button"
                                                                 class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg:not([class*='size-'])]:size-4 shrink-0 [&amp;_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive bg-primary text-primary-foreground shadow-xs hover:bg-primary/90 h-10 rounded-md px-6 has-[&gt;svg]:px-4 w-full"
                                                                 type="submit" data-magicpath-id="60"
-                                                                data-magicpath-path="ContactPage.tsx"><svg
+                                                                data-magicpath-path="ContactPage.tsx"
+                                                                style="cursor: pointer;"><svg
                                                                     xmlns="http://www.w3.org/2000/svg" width="24"
                                                                     height="24" viewBox="0 0 24 24" fill="none"
                                                                     stroke="currentColor" stroke-width="2"
@@ -5201,20 +5126,9 @@
                                                                     </path>
                                                                     <path d="m21.854 2.147-10.94 10.939"></path>
                                                                 </svg>Send Message</button></div>
+                                                        <div id="result" class="text-green-700 font-semibold text-center mt-4">
+                                                        </div>
                                                     </form>
-                                                    <div id="DndDescribedBy-10" style="display: none;">
-                                                        To pick up a draggable item, press the space bar.
-                                                        While dragging, use the arrow keys to move the item.
-                                                        Press space again to drop the item in its new position, or press
-                                                        escape to cancel.
-                                                    </div>
-                                                    <div id="DndLiveRegion-10" role="status" aria-live="assertive"
-                                                        aria-atomic="true"
-                                                        style="position: fixed; top: 0px; left: 0px; width: 1px; height: 1px; margin: -1px; border: 0px; padding: 0px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); clip-path: inset(100%); white-space: nowrap; --darkreader-inline-border-top: 0px; --darkreader-inline-border-right: 0px; --darkreader-inline-border-bottom: 0px; --darkreader-inline-border-left: 0px;"
-                                                        data-darkreader-inline-border-top=""
-                                                        data-darkreader-inline-border-right=""
-                                                        data-darkreader-inline-border-bottom=""
-                                                        data-darkreader-inline-border-left=""></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -6937,6 +6851,7 @@
             }
         })();
     </script>
+    <script src="../assets/js/submitForm.js"></script>
 
 </body>
 
